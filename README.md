@@ -95,8 +95,6 @@ src/
 
 ## 📊 Performance (Lighthouse)
 
-Target: **≥ 90 (Mobile & Desktop)**
-
 ### Optimizations Applied
 - Memoized token cards
 - Minimal DOM structure
