@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Axiom Trade - Token Trading Table Design System */
+
+@layer base {
+  :root {
+    /* Core backgrounds - deep dark theme */
+    --background: 220 13% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 12% 11%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 12% 13%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary - Cyan/Teal accent */
+    --primary: 173 80% 50%;
+    --primary-foreground: 220 13% 8%;
+
+    /* Secondary surfaces */
+    --secondary: 220 11% 16%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 220 10% 22%;
+    --muted-foreground: 220 8% 55%;
+
+    /* Accent - subtle highlight */
+    --accent: 220 11% 18%;
+    --accent-foreground: 0 0% 90%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+    --ring: 173 80% 50%;
+
+    --radius: 0.5rem;
+
+    /* Trading specific colors */
+    --positive: 160 84% 39%;
+    --negative: 0 72% 51%;
+    --warning: 38 92% 50%;
+    --info: 217 91% 60%;
+    
+    /* Token metrics */
+    --dev: 280 65% 60%;
+    --bundled: 199 89% 48%;
+    --insider: 330 81% 60%;
+    --sniper: 38 92% 50%;
+    
+    /* Quick buy button */
+    --buy-button: 173 80% 40%;
+    --buy-button-hover: 173 80% 45%;
+
+    /* Sidebar */
+    --sidebar-background: 220 13% 9%;
+    --sidebar-foreground: 220 8% 65%;
+    --sidebar-primary: 173 80% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 11% 14%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 220 10% 16%;
+    --sidebar-ring: 173 80% 50%;
+  }
+
+  .dark {
+    --background: 220 13% 8%;
+    --foreground: 0 0% 95%;
+    --card: 220 12% 11%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 12% 13%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 173 80% 50%;
+    --primary-foreground: 220 13% 8%;
+    --secondary: 220 11% 16%;
+    --secondary-foreground: 0 0% 85%;
+    --muted: 220 10% 22%;
+    --muted-foreground: 220 8% 55%;
+    --accent: 220 11% 18%;
+    --accent-foreground: 0 0% 90%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+    --ring: 173 80% 50%;
+    --sidebar-background: 220 13% 9%;
+    --sidebar-foreground: 220 8% 65%;
+    --sidebar-primary: 173 80% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 11% 14%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 220 10% 16%;
+    --sidebar-ring: 173 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* 2xs text size */
+  .text-2xs {
+    font-size: 0.65rem;
+    line-height: 1rem;
+  }
+
+  /* Price flash animations */
+  @keyframes flash-green {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: hsl(160 84% 39% / 0.3); }
+  }
+  
+  @keyframes flash-red {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: hsl(0 72% 51% / 0.3); }
+  }
+  
+  .flash-positive {
+    animation: flash-green 0.6s ease-out;
+  }
+  
+  .flash-negative {
+    animation: flash-red 0.6s ease-out;
+  }
+  
+  /* Shimmer loading effect */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  /* Smooth scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 2px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+  
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Metric colors */
+  .text-dev {
+    color: hsl(var(--dev));
+  }
+  
+  .text-bundled {
+    color: hsl(var(--bundled));
+  }
+  
+  .text-insider {
+    color: hsl(var(--insider));
+  }
+  
+  .text-sniper {
+    color: hsl(var(--sniper));
+  }
+  
+  .text-positive {
+    color: hsl(var(--positive));
+  }
+  
+  .text-negative {
+    color: hsl(var(--negative));
+  }
+  
+  .bg-positive {
+    background-color: hsl(var(--positive));
+  }
+  
+  .bg-negative {
+    background-color: hsl(var(--negative));
+  }
+  
+  .ring-positive {
+    --tw-ring-color: hsl(var(--positive));
+  }
+  
+  .ring-negative {
+    --tw-ring-color: hsl(var(--negative));
+  }
+}
